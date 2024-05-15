@@ -1,5 +1,5 @@
 # Directories
-AVR_GCC_ROOT_DIR = /home/siralbits/dev/tools/avr8-gnu-toolchain-linux_x86_64
+AVR_GCC_ROOT_DIR = /home/$(USER)/dev/tools/avr8-gnu-toolchain-linux_x86_64
 AVR_GCC_BIN_DIR = $(AVR_GCC_ROOT_DIR)/bin
 AVR_GCC_INCLUDE_DIR = $(AVR_GCC_ROOT_DIR)/include
 INCLUDE_DIRS = $(AVR_GCC_INCLUDE_DIR)
