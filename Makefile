@@ -12,6 +12,7 @@ BIN_DIR = $(BUILD_DIR)/bin
 # Toolchain
 CC = $(AVR_GCC_BIN_DIR)/avr-gcc
 RM = rm
+CPPCHECK = cppcheck
 
 # Files
 TARGET = $(BIN_DIR)/blink.ELF
@@ -42,7 +43,7 @@ $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $^
 
 ##Phonies
-.PHONY: all clean flash
+.PHONY: all clean flash cppcheck
 
 all: $(TARGET)
 
@@ -51,3 +52,11 @@ clean:
 
 flash: $(TARGET)
 	sudo avrdude -c arduino -P ch340 -b 115200 -p $(MCU) -D -U flash:w:$(TARGET):e
+
+cppcheck: 
+	  @$(CPPCHECK) --quiet --enable=all --error-exitcode=1\
+	  --inline-suppr \
+	  --suppress=missingIncludeSystem \
+	  -i $(INCLUDE_DIRS) \
+		$(SOURCES) \
+	  --check-config
