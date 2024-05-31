@@ -1,0 +1,15 @@
+FROM ubuntu:22.04
+
+# Install necessary packages
+
+RUN DEBIAN_FRONTEND=noninteractive\
+    apt-get update\
+    && apt-get install -y wget bzip2 make unzip cppcheck
+
+# Create non-root user named "ubuntu"
+# And add it to root group so it has proper permissions
+
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo \
+-u 1001 ubuntu
+USER ubuntu
+WORKDIR /home/ubuntu
