@@ -1,5 +1,6 @@
 # Directories
-AVR_GCC_ROOT_DIR = ~/dev/tools/avr8-gnu-toolchain-linux_x86_64
+TOOLS_DIR = ${TOOLS_PATH}
+AVR_GCC_ROOT_DIR = $(TOOLS_DIR)/avr8-gnu-toolchain-linux_x86_64
 AVR_GCC_BIN_DIR = $(AVR_GCC_ROOT_DIR)/bin
 AVR_GCC_INCLUDE_DIR = $(AVR_GCC_ROOT_DIR)/include
 INCLUDE_DIRS = $(AVR_GCC_INCLUDE_DIR)
