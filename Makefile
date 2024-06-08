@@ -3,7 +3,9 @@ TOOLS_DIR = ${TOOLS_PATH}
 AVR_GCC_ROOT_DIR = $(TOOLS_DIR)/avr8-gnu-toolchain-linux_x86_64
 AVR_GCC_BIN_DIR = $(AVR_GCC_ROOT_DIR)/bin
 AVR_GCC_INCLUDE_DIR = $(AVR_GCC_ROOT_DIR)/include
-INCLUDE_DIRS = $(AVR_GCC_INCLUDE_DIR)
+INCLUDE_DIRS = $(AVR_GCC_INCLUDE_DIR)\
+				./src \
+				./external
 LIB_DIRS = $(AVR_GCC_INCLUDE_DIR)
 
 BUILD_DIR = build
@@ -16,10 +18,22 @@ RM = rm
 CPPCHECK = cppcheck
 
 # Files
-TARGET = $(BIN_DIR)/blink.ELF
+TARGET = $(BIN_DIR)/main.ELF
 
 ##source files
-SOURCES = blink.c
+SOURCES_WITH_HEADERS = \
+	src/drivers/myUSART.c\
+
+MAIN_FILE = src/main.c
+
+SOURCES =\
+	$(MAIN_FILE)\
+	$(SOURCES_WITH_HEADERS)
+
+# blink.c
+
+HEADERS = \
+	$(SOURCES_WITH_HEADERS:.c=.h) \
 
 OBJECT_NAMES = $(SOURCES:.c=.o)
 OBJECTS = $(patsubst %,$(OBJ_DIR)/%,$(OBJECT_NAMES))
@@ -34,7 +48,7 @@ LDFLAGS = -mmcu=$(MCU) $(addprefix -L, $(LIB_DIRS)) -O
 
 # Build
 ## Linking
-$(TARGET): $(OBJECTS)
+$(TARGET): $(OBJECTS) $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(LDFLAGS) $^ -o $@
 

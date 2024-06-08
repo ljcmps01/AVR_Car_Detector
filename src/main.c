@@ -7,7 +7,7 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-#include "myUSART.h"
+#include "drivers/myUSART.h"
 
 uint8_t flag_pc = 0;
 
@@ -107,7 +107,7 @@ int main(void)
 				break;
 			}
 
-			// USART_transmitFormatted("Interrupcion detectada!\nPuerto C: %d\n",irStatus);
+			USART_transmitFormatted("Interrupcion detectada!\nPuerto C: %d\n",irStatus);
 			flag_pc = 0;
 		}
 

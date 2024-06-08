@@ -8,7 +8,7 @@
  * 
  * @param pattern 
  * @param pattern_length 
- * @return Sensor* 
+ * @return Sensor
  */
 Sensor newSensor( int pin_offset, size_t barrier_number,  int *pattern, size_t pattern_length){
     Sensor sensor;
@@ -38,13 +38,13 @@ int trimOffset(Sensor *sensor, int data_value){
 }
 
 int cmpStepValue (Sensor *sensor, int data_value){
-    int current_step = sensor->pattern_index;
+    unsigned int current_step = sensor->pattern_index;
 
     if (current_step >= sensor->pattern_length-1){
         return 0;
     }
 
-    int expected_value = sensor-> pattern_array+current_step;    
+    int expected_value = *sensor->pattern_array+current_step;    
 
     if (expected_value == data_value)
     {
