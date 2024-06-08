@@ -15,6 +15,6 @@ typedef struct{
 
 }Sensor;
 
-Sensor *newSensor(int pin_offset, size_t barrier_number,  int *pattern, size_t pattern_length);
+Sensor newSensor(int pin_offset, size_t barrier_number,  int *pattern, size_t pattern_length);
 
 #endif
