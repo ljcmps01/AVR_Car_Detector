@@ -7,8 +7,6 @@ jobs:
     steps:
     - name: Checkout the repository
       uses: actions/checkout@v3
-      with:
-        submodules: recursive 
-    - run: ls
+    - run: tree
     - run: TOOLS_PATH="/home/ubuntu/dev/tools" make
     - run: make cppcheck
