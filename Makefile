@@ -23,8 +23,6 @@ TARGET = $(BIN_DIR)/main.ELF
 ##source files
 SOURCES_WITH_HEADERS = \
 	src/drivers/myUSART.c\
-	src/drivers/avr_w5100.c\
-	external/w5100/w5100.c
 
 MAIN_FILE = src/main.c
 
@@ -40,14 +38,11 @@ HEADERS = \
 OBJECT_NAMES = $(SOURCES:.c=.o)
 OBJECTS = $(patsubst %,$(OBJ_DIR)/%,$(OBJECT_NAMES))
 
-# Defines
-DEFINES = -DF_CPU=16000000UL
-
 # Flags
 MCU = atmega328p
 
 WFLAGS = -Wall -Wextra -Werror -Wshadow
-CFLAGS = -mmcu=$(MCU) $(WFLAGS) $(addprefix -I, $(INCLUDE_DIRS)) -Og -g $(DEFINES)
+CFLAGS = -mmcu=$(MCU) $(WFLAGS) $(addprefix -I, $(INCLUDE_DIRS)) -Og -g
 LDFLAGS = -mmcu=$(MCU) $(addprefix -L, $(LIB_DIRS)) -O
 
 
@@ -71,7 +66,7 @@ clean:
 	$(RM) -r build
 
 flash: $(TARGET)
-	sudo avrdude -c arduino -P /dev/ttyACM0 -b 115200 -p $(MCU) -D -U flash:w:$(TARGET):e
+	sudo avrdude -c arduino -P ch340 -b 115200 -p $(MCU) -D -U flash:w:$(TARGET):e
 
 cppcheck: 
 	  @$(CPPCHECK) --quiet --enable=all --error-exitcode=1\

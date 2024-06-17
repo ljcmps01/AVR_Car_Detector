@@ -1,3 +1,0 @@
-[submodule "external/w5100"]
-	path = external/w5100
-	url = https://github.com/Wiznet/W5100_ATMega_WEBSERV.git
