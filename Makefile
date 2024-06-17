@@ -5,7 +5,7 @@ AVR_GCC_BIN_DIR = $(AVR_GCC_ROOT_DIR)/bin
 AVR_GCC_INCLUDE_DIR = $(AVR_GCC_ROOT_DIR)/include
 INCLUDE_DIRS = $(AVR_GCC_INCLUDE_DIR)\
 				./src \
-				# ./external
+				./external
 LIB_DIRS = $(AVR_GCC_INCLUDE_DIR)
 
 BUILD_DIR = build
@@ -24,7 +24,7 @@ TARGET = $(BIN_DIR)/main.ELF
 SOURCES_WITH_HEADERS = \
 	src/drivers/myUSART.c\
 	src/drivers/avr_w5100.c\
-	# external/w5100/w5100.c
+	external/w5100/w5100.c
 
 MAIN_FILE = src/main.c
 
