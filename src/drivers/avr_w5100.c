@@ -1,47 +1,47 @@
-// #include <avr/io.h>
-// #include <avr/pgmspace.h>
-// #include <stdint.h>
-// #include <stdio.h>
-// #include <string.h>
-// #include <util/delay.h>
+#include <avr/io.h>
+#include <avr/pgmspace.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
+#include <util/delay.h>
 
 // #include "../../external/w5100/w5100.h"
 
-// #include "avr_w5100.h"
+#include "avr_w5100.h"
 
-// /*
-//  *  Define the SPI port, used to exchange data with a W5100 chip.
-//  */
-// #define SPI_PORT PORTB /* target-specific port containing the SPI lines */
-// #define SPI_DDR DDRB   /* target-specific DDR for the SPI port lines */
+/*
+ *  Define the SPI port, used to exchange data with a W5100 chip.
+ */
+#define SPI_PORT PORTB /* target-specific port containing the SPI lines */
+#define SPI_DDR DDRB   /* target-specific DDR for the SPI port lines */
 
-// #define CS_DDR DDRB   /* target-specific DDR for chip-select */
-// #define CS_PORT PORTB /* target-specific port used as chip-select */
-// #define CS_BIT 2      /* target-specific port line used as chip-select */
+#define CS_DDR DDRB   /* target-specific DDR for chip-select */
+#define CS_PORT PORTB /* target-specific port used as chip-select */
+#define CS_BIT 2      /* target-specific port line used as chip-select */
 
-// #define RESET_DDR DDRC   /* target-specific DDR for reset */
-// #define RESET_PORT PORTC /* target-specific port used for reset */
-// #define RESET_BIT 6      /* target-specific port line used as reset */
+#define RESET_DDR DDRC   /* target-specific DDR for reset */
+#define RESET_PORT PORTC /* target-specific port used for reset */
+#define RESET_BIT 6      /* target-specific port line used as reset */
 
-// /*
-//  *  Define macros for selecting and deselecting the W5100 device.
-//  */
-// #define W51_ENABLE CS_PORT &= ~(1 << CS_BIT)
-// #define W51_DISABLE CS_PORT |= (1 << CS_BIT)
+/*
+ *  Define macros for selecting and deselecting the W5100 device.
+ */
+#define W51_ENABLE CS_PORT &= ~(1 << CS_BIT)
+#define W51_DISABLE CS_PORT |= (1 << CS_BIT)
 
-// /*
-//  *  Initialize the ATmega328p SPI subsystem
-//  */
-// void spi_init() {
-//   CS_PORT |= (1 << CS_BIT); // pull CS pin high
-//   CS_DDR |= (1 << CS_BIT);  // now make it an output
+/*
+ *  Initialize the ATmega328p SPI subsystem
+ */
+void spi_init() {
+  CS_PORT |= (1 << CS_BIT); // pull CS pin high
+  CS_DDR |= (1 << CS_BIT);  // now make it an output
 
-//   SPI_PORT = SPI_PORT | (1 << CS_BIT); // make sure SS is high
-//   SPI_DDR = (1 << CS_BIT) | (1 << PB3) |
-//             (1 << PB5); // set MOSI, SCK and SS as output, others as input
-//   SPCR = (1 << SPE) | (1 << MSTR); // enable SPI, master mode 0
-//   SPSR |= (1 << SPI2X);            // set the clock rate fck/2
-// }
+  SPI_PORT = SPI_PORT | (1 << CS_BIT); // make sure SS is high
+  SPI_DDR = (1 << CS_BIT) | (1 << PB3) |
+            (1 << PB5); // set MOSI, SCK and SS as output, others as input
+  SPCR = (1 << SPE) | (1 << MSTR); // enable SPI, master mode 0
+  SPSR |= (1 << SPI2X);            // set the clock rate fck/2
+}
 
 // unsigned char OpenSocket(unsigned char sock, unsigned char eth_protocol,
 //                          unsigned int tcp_port) {
