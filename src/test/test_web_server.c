@@ -4,7 +4,7 @@
 #include <string.h>
 #include <util/delay.h>
 
-#include "drivers/avr_w5100.h"
+#include "../drivers/avr_w5100.h"
 
 #define MAC                                                                    \
   { 0x00, 0x16, 0x36, 0xDE, 0x58, 0xF6 }
