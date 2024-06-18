@@ -26,13 +26,17 @@ SOURCES_WITH_HEADERS = \
 	src/drivers/avr_w5100.c\
 	external/w5100/w5100.c
 
-MAIN_FILE = src/main.c
-
+ifndef TEST
 SOURCES =\
-	$(MAIN_FILE)\
+	src/main.c\
 	$(SOURCES_WITH_HEADERS)
 
-# blink.c
+else
+SOURCES =\
+	src/test/$(TEST).c\
+	$(SOURCES_WITH_HEADERS)
+
+endif
 
 HEADERS = \
 	$(SOURCES_WITH_HEADERS:.c=.h) \
