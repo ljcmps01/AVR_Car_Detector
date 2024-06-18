@@ -12,4 +12,5 @@ jobs:
     - run: git --version
     - run: tree
     - run: TOOLS_PATH="/home/ubuntu/dev/tools" make
-    - run: make cppcheck
+    - run: TOOLS_PATH="/home/ubuntu/dev/tools" make cppcheck
+    - run: TOOLS_PATH="/home/ubuntu/dev/tools" tools/test_all.sh
