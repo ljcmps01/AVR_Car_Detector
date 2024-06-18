@@ -40,7 +40,6 @@ void spi_init() {
   SPCR = (1 << SPE) | (1 << MSTR); // enable SPI, master mode 0
   SPSR |= (1 << SPI2X);            // set the clock rate fck/2
 }
-
 unsigned char OpenSocket(unsigned char sock, unsigned char eth_protocol,
                          unsigned int tcp_port) {
   unsigned char retval;

@@ -5,7 +5,7 @@ AVR_GCC_BIN_DIR = $(AVR_GCC_ROOT_DIR)/bin
 AVR_GCC_INCLUDE_DIR = $(AVR_GCC_ROOT_DIR)/include
 INCLUDE_DIRS = $(AVR_GCC_INCLUDE_DIR)\
 				./src \
-				./external
+			  ./external
 LIB_DIRS = $(AVR_GCC_INCLUDE_DIR)
 
 BUILD_DIR = build
